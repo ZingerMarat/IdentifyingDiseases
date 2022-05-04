@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../files/media/appIcon.png">
+  <title>Login</title>
+      <link rel="stylesheet" href="../css/main_login.css">
+	    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+		  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'>
+    <script type="text/javascript" src="/eel.js"></script>
+	<link rel="stylesheet" href="../css/login.css">
+
+</head>
+<body>
+
+<div id="login-button">
+  <img src="https://dqcgrsy5v35b9.cloudfront.net/cruiseplanner/assets/img/icons/login-w-icon.png">
+  </img>
+</div>
+
+<div class="login-container">
+	<div class="container">
+		<span class="close-btn">
+			<img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
+		</span>
+		<div class="section pb-5 pt-5 pt-sm-2 text-center">
+
+			<h6 class="mb-0 pb-3"><span>הרשמה</span><span>כניסה</span></h6>
+			<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+			<label for="reg-log"></label>
+
+			<div class="card-3d-wrap mx-auto">
+				<div class="card-3d-wrapper">
+					<!-- Sign In -->
+					<div class="card-front">
+						<div class="center-wrap">
+							<div class="section text-center">
+								<h4 class="mb-4 pb-3">כניסה</h4>
+								<div class="login_container">
+									<div class="form-group">
+										<input align="right" type="text" name="username" class="form-style" placeholder="שם משתמש" id="username" autocomplete="off" required="required" autocapitalize="off">
+										<i class="input-icon uil uil-user"></i>
+									</div>
+									<div class="form-group mt-2">
+										<input type="password" name="password" class="form-style" placeholder="סיסמא" id="password" autocomplete="off" required="required" autocapitalize="off">
+										<i class="input-icon uil uil-lock-alt"></i>
+									</div>
+										<button class="btn mt-4" onclick="login_user();">היכנס</button>
+									<div class="login_user" style="text-align: center;width: 100%;">
+										<label class="label_input" id="login_txt" style="width: 100%;"></label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Sign Up -->
+					<div class="card-back">
+						<div class="center-wrap">
+							<div class="section text-center">
+								<h4 class="mb-4 pb-3">הרשמה</h4>
+								<div class="new_register_container">
+									<div class="form-group">
+										<input type="text" name="username" class="form-style" placeholder="הכנס שם משתמש" id="new_username" autocomplete="off" readonly onclick="this.removeAttribute('readonly');">
+										<i class="input-icon uil uil-user"></i>
+									</div>
+									<div class="form-group mt-2">
+										<input type="password" name="password" class="form-style" placeholder="הכנס סיסמא" id="new_pass" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" >
+										<i class="input-icon uil uil-lock-alt"></i>
+									</div>
+									<div class="form-group mt-2">
+										<input type="password" name="re_password" class="form-style" placeholder="הכנס סיסמא בשנית" id="new_repass" autocomplete="off" readonly onfocus="this.removeAttribute('readonly');" >
+										<i class="input-icon uil uil-lock-alt"></i>
+									</div>
+									<div class="box"><label class="label_input" id="return_register" style="width: 90%;"></label></div>
+
+									<button class="btn mt-4" onclick="save_register_js();">הירשם</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="./js/login.js"></script>
+<script>
+
+	$('#login-button').click(function(){
+  $('#login-button').fadeOut("slow",function(){
+    $(".login-container").fadeIn();
+    TweenMax.from('.login-container', .4, { scale: 0, ease:Sine.easeInOut});
+    TweenMax.to('.login-container', .4, { scale: 1, ease:Sine.easeInOut});
+  });
+});
+
+$(".close-btn").click(function(){
+  TweenMax.from('.login-container', .4, { scale: 1, ease:Sine.easeInOut});
+  TweenMax.to('.login-container', .4, { left:"0px", scale: 0, ease:Sine.easeInOut});
+    $(".login-container").fadeOut(800, function(){
+    $("#login-button").fadeIn(800);
+  });
+});
+
+
+</script>
+
+<script type="text/javascript" >
+	// NEW USER REGISTRATION
+	async function save_register_js(){
+		eel.btn_save($('#new_username').val(),$('#new_pass').val(),$('#new_repass').val())
+	};
+	eel.expose(save_return); // USED TO PASS THE FUNCTION TO BE SEEN AT PYTHON
+	function save_return(status){
+		if (status == "success"){
+			$('#return_register').text('תהליך רישום הושלם בהצלחה');
+			$('#new_username').val('');
+			$('#new_pass').val('');
+			$('#new_repass').val('');
+		}
+		if (status == "failure"){
+			$('#return_register').text('שגיאה בתהליך רישום, שדות ריקים או סיסמאות לא תואמות');
+		}
+	};
+
+	// USER LOGIN
+	async function login_user(){
+		eel.btn_login($('#username').val(), $('#password').val())
+	};
+
+	eel.expose(login_return)
+	function login_return(status){
+		if (status == "success"){
+			location.href = "./index.html";
+		}
+		if (status == "failure"){
+			$('#login_txt').text("שם משתמש או סיסמא שגויים")
+		}
+	}
+
+
+</script>
+
+
+</body>
+
+</html>
+

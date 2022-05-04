@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Scanner</title>
+	<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+
+</head>
+<body> <!--=oncontextmenu="return false" onselectstart="return false" ondragstart="return false">-->
+
+    <aside class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle-3" id="sb3" data-shift=".shifted-content">
+        <div class="sidebar-header" data-image="images/sb-bg-1.jpg">
+            <div class="avatar">
+                <!--<img src="images/logo.jpg">-->
+            </div>
+            <span class="title fg-black">SCE Medical System</span>
+            <span class="subtitle fg-black"> 2022 © Marat Zinger, Kfir German</span>
+
+        </div>
+        <ul class="sidebar-menu">
+            <li id="btnHome"><a><span class="mif-home icon"></span>Home</a></li>
+            <li id="btnPatientSurvey"><a href="patient_survey.html"><span class="mif-user-md icon"></span>Patient Survey</a></li>
+            <li id="btnDoctor"><a><span class="mif-stethoscope icon"></span>Doctor</a></li>
+
+            <li id="btnResult"><a><span class="mif-table icon"></span>Result</a></li>
+            <li class="divider"></li>
+            <li id="btnExit"><a><span class="mif-exit icon"></span>Exit</a></li>
+        </ul>
+    </aside>
+
+    <div class="shifted-content h-100 p-ab">
+        <div class="app-bar pos-absolute bg-blue z-1" data-role="appbar">
+            <button class="app-bar-item c-pointer" id="sidebar-toggle-3">
+                <span class="mif-menu fg-white"></span>
+            </button>
+
+            <h3 style="color:white;">SCE Medical</h3>
+        </div>
+    </div>
+
+    <div class="container">
+		<section id="sectionHome">
+			<div class="grid">
+				<div class="row">
+					<div class="cell-8 offset-1">
+						<input id="netowrkId"
+							   type="text"
+							   data-role="materialinput"
+							   data-icon="<span class='mif-laptop'>"
+							   data-label="Enter your network IP address"
+							   data-informer="Look at ipconfig"
+							   placeholder="Enter IP address to scan for example: 10.0.0.0">
+					</div>
+					<div class="cell-2">
+						<button class="button drop-shadow" onclick="start_scan();">Scan</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="sectionResult" style="display: none;">
+			<h5 class="text-light">Scan Result</h5>
+			<hr/>
+			<ul data-role="treeview" id="resultView">
+			</ul>
+
+		</section>
+    </div>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+
+</body>
+</html>
