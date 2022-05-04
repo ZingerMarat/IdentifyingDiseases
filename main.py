@@ -4,9 +4,9 @@ from src.py_files.login import login_user, save_register
 
 
 @eel.expose
-def btn_save(login, pass_1, pass_2):
+def btn_save(login, pass_1, pass_2, id):
     print(login, pass_1)
-    msg = save_register(login, pass_1, pass_2)
+    msg = save_register(login, pass_1, pass_2, id)
     eel.save_return(str(msg))
 
 

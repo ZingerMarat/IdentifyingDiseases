@@ -1,7 +1,9 @@
 import pandas as pd
 import os
 import re
+
 csv_path = os.getcwd() + "\\src\\web\\files\\storage\\users.csv"
+
 
 def check_credentials(username, password):
     users_csv = pd.read_csv(csv_path, usecols=("username", "password"))
@@ -17,19 +19,30 @@ def check_credentials(username, password):
            password == users_csv['password'].values[password_index]
 
 
-def add_cred(username, password):
-    credentials = {"username": username, "password": password}
+def add_cred(username, password, user_id):
+    credentials = {"username": username, "password": password, "id": user_id}
 
     cred = pd.DataFrame(credentials, index={30})
+    print("cred = pd.DataFrame(credentials, index={30})")
     cred.to_csv(csv_path, index=False, header=False, mode='a')
+    print("cred.to_csv(csv_path, index=False, header=False, mode='a')")
 
 
-def save_register(username, pass_1, pass_2):
+def save_register(username, pass_1, pass_2, user_id):
+    msg = "failure"
     try:
         if username != "" and pass_1 != "" and pass_2 != "" and pass_1 == pass_2:
-            if check_username(username) == "success" and check_password(pass_1) == "success":
-                add_cred(username, pass_1)
+            user_msg, pass_msg, id_msg = check_username(username), check_password(pass_1), check_ID(user_id)
+            if user_msg == "success" and pass_msg == "success" and id_msg == "success":
+                add_cred(username, pass_1, user_id)
                 msg = "success"
+            elif user_msg != "success":
+                msg = user_msg
+            elif id_msg != "success":
+                msg = id_msg
+            elif pass_msg != "success":
+                msg = pass_msg
+
         else:
             msg = "failure"
         return msg
@@ -38,10 +51,11 @@ def save_register(username, pass_1, pass_2):
         msg = "failure"
         return msg
 
+
 def check_username(username):
-    #check if len of username between 6 and 8, contains only letters and max of 2 numbers
+    # check if len of username between 6 and 8, contains only letters and max of 2 numbers
     msg = "failure"
-    if 6<= len(username) <= 8:
+    if 6 <= len(username) <= 8:
         count_dig = 0
         let = re.compile(r'[a-zA-Z]')
         dig = re.compile(r'[0-9]')
@@ -49,18 +63,19 @@ def check_username(username):
             if dig.match(i):
                 count_dig += 1
             elif not let.match(i):
-                return "failure"
+                return "alpha failure"
 
         if 0 <= count_dig <= 2:
             msg = "success"
         else:
-            msg = "failure"
+            msg = "max digit failure"
     return msg
 
+
 def check_password(password):
-    #check if len of password between 8 and 10, contains at least one number, one letter and one special character
+    # check if len of password between 8 and 10, contains at least one number, one letter and one special character
     msg = "failure"
-    if 8<= len(password) <= 10:
+    if 8 <= len(password) <= 10:
         count_dig = 0
         count_spec = 0
         count_let = 0
@@ -77,15 +92,19 @@ def check_password(password):
 
         if count_dig >= 1 and count_let >= 1 and count_spec >= 1:
             msg = "success"
-        else:
-            msg = "failure"
+        elif count_dig < 1:
+            msg = "digit failure"
+        elif count_let < 1:
+            msg = "letter failure"
+        elif count_spec < 1:
+            msg = "special failure"
     return msg
 
-def check_ID(ID):
-    #check if ID is a valid
-    if len(ID) != 9:
-        return "failure"
 
+def check_ID(ID):
+    # check if ID is a valid
+    if len(ID) != 9:
+        return "len id failure"
     IdList = list()
     id_list = list(map(int, ID))
     counter = 0
@@ -99,7 +118,8 @@ def check_ID(ID):
     if counter % 10 == 0:
         return "success"
     else:
-        return "failure"
+        return "invalid id failure"
+
 
 def login_user(user_name, password):
     try:
