@@ -44,7 +44,7 @@ body {
 }
 
 /*inputs*/
-#msform input, #msform textarea {
+#msform input[type=text], #msform textarea {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -55,6 +55,7 @@ body {
     color: #2C3E50;
     font-size: 13px;
 }
+
 
 #msform input:focus, #msform textarea:focus {
     -moz-box-shadow: none !important;
@@ -96,6 +97,8 @@ body {
     padding: 10px 5px;
     margin: 10px 5px;
 }
+
+.radioRight{ text-align: right; }
 
 #msform .action-button-previous:hover, #msform .action-button-previous:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #aCbEd0;
@@ -174,4 +177,10 @@ body {
     background: #2098ce;
     color: white;
 }
+
+label.btn span {
+  font-size: 1.5em ;
+}
+
+
 
