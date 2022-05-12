@@ -54,7 +54,6 @@ def get_blood_results():
     try:
         doc = Doctor()
         blood_results = doc.get_input()
-        print(blood_results)
         msg = "success"
     except Exception as Error:
         print(Error)
@@ -65,7 +64,6 @@ def get_blood_results():
 def send_results():
     msg = ""
     try:
-        print(data)
         msg = "success"
     except Exception as Error:
         print(Error)
@@ -76,6 +74,6 @@ def send_results():
 eel.init('src\\web')
 
 try:
-    eel.start('html\\index.html', mode="chrome", port=0, size=(1920, 1080))
+    eel.start('html\\login.html', mode="chrome", port=0, size=(1920, 1080))
 except (SystemExit, MemoryError, KeyboardInterrupt):
     print("client")

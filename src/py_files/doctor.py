@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import openpyxl
 
-excel_path = os.getcwd() + r"\src\web\files\storage"
+
 
 
 class Doctor:
@@ -30,6 +30,7 @@ class Doctor:
         self.blood_results = {}
 
         self.all_data = None
+        self.excel_path = os.getcwd() + r"\src\web\files\storage"
 
     def init_doctor(self):
         self.get_input()
@@ -39,6 +40,8 @@ class Doctor:
 
         self.build_recommendation_list()
         self.set_diagnosis()
+
+        self.collect_data()
 
     def set_test_results(self):
 
@@ -368,6 +371,7 @@ class Doctor:
         community = ""
         smoking = ""
         pregnancy = ""
+        sex = ""
         if self.patient_info["user_ethiopian_community"] == 1:
             community = "Ethiopian"
         if self.patient_info["user_eastern_community"] == 1:
@@ -380,6 +384,10 @@ class Doctor:
             pregnancy = "Yes"
         else:
             pregnancy = "No"
+        if self.patient_info["user_gender"] == "m":
+            sex = "זכר"
+        elif self.patient_info["user_gender"] == "w":
+            sex = "נקבה"
 
         if self.blood_results:
             self.patient_info.update(self.blood_results)
@@ -389,7 +397,7 @@ class Doctor:
             "Last name": self.patient_info["last_name"],
             "ID": self.patient_info["user_id"],
             "Age": self.patient_info["user_age"],
-            "Sex": self.patient_info["user_gender"],
+            "Sex": sex,
             "Smoking": smoking,
             "Pregnancy": pregnancy,
             "Community": community,
@@ -417,17 +425,15 @@ class Doctor:
 
     def add_patient_info(self):
         try:
-            self.collect_data()
-
             df = pd.DataFrame(self.all_data)
-            wb = openpyxl.load_workbook(excel_path + r"\output.xlsx")
+            wb = openpyxl.load_workbook(self.excel_path + r"\output.xlsx")
 
             sheet = wb.active
 
             for index, row in df.iterrows():
                 sheet.append(row.values.tolist())
 
-            wb.save(excel_path + r"\output.xlsx")
+            wb.save(self.excel_path + r"\output.xlsx")
             msg = "success"
             return msg
         except Exception as Error:
@@ -437,7 +443,7 @@ class Doctor:
             return msg
 
     def get_input(self):
-        df = pd.read_excel(excel_path + r"\input.xlsx")
+        df = pd.read_excel(self.excel_path + r"\input.xlsx")
         temp = df.to_dict()
 
         data = {}
