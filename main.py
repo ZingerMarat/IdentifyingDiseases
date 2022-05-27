@@ -12,14 +12,16 @@ def btn_save(login, pass_1, pass_2, id):
 
 @eel.expose
 def btn_login(user_name, password):
-
     msg = login_user(user_name, password)
     eel.login_return(str(msg))
 
 
 data = None
+
+
 @eel.expose
-def btn_save_doctor(fname, lname, id, age, sex, temp, smoke, pregnancy, ethiopian, eastern):
+def btn_save_doctor(fname, lname, id, age, sex, temp, smoke, pregnancy, ethiopian, eastern, WBC, Neut, Lymph, RBC, HCT,
+                    Urea, Hb, Crtn, Iron, HDL, AP):
     msg = ""
     global data
     try:
@@ -34,8 +36,19 @@ def btn_save_doctor(fname, lname, id, age, sex, temp, smoke, pregnancy, ethiopia
             "user_eastern_community": int(ethiopian),
             "user_ethiopian_community": int(eastern),
             "user_temperature": float(temp),
+            "WBC": float(WBC),
+            "Neut": float(Neut),
+            "Lymph": float(Lymph),
+            "RBC": float(RBC),
+            "HCT": float(HCT),
+            "Urea": float(Urea),
+            "Hb": float(Hb),
+            "Crtn": float(Crtn),
+            "Iron": float(Iron),
+            "HDL": float(HDL),
+            "AP": float(AP)
         }
-
+        print(doctor_dict)
         doctor = Doctor(doctor_dict)
         doctor.init_doctor()
         msg = doctor.add_patient_info()
@@ -48,17 +61,18 @@ def btn_save_doctor(fname, lname, id, age, sex, temp, smoke, pregnancy, ethiopia
 
 
 @eel.expose
-def get_blood_results():
+def get_blood_results(file_name):
     msg = ""
     blood_results = None
     try:
         doc = Doctor()
-        blood_results = doc.get_input()
+        blood_results = doc.get_input(file_name)
         msg = "success"
     except Exception as Error:
         print(Error)
         msg = "failure"
     eel.blood_return(str(msg), blood_results)
+
 
 @eel.expose
 def send_results():

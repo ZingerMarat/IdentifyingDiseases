@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>מסך רופא</title>
+    <link rel="icon" href="../files/media/appIcon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q3E3XZ7RL7"></script>
 
-    <link rel="stylesheet" href="../css/style.css">
-<script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript" src="/eel.js"></script>
     <link rel="stylesheet" href="../css/doctor.css">
-
 </head>
 
 <body>
-<!-- Navigation Bar -->
+
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="collapse navbar-collapse" id="resNav">
     <ul class="nav navbar-nav navbar-right">
@@ -28,186 +29,229 @@
 
     </ul>
   </div>
-</nav>  <!-- End of Navigation Bar -->
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
+</nav>
+    <div class="row">
 
-        <form id="msform" action="results.html" autocomplete="off">
-            <!-- progressbar -->
-            <ul id="progressbar">
-                <li class="active">פרטים אישיים</li>
-                <li>אבחון רפואי</li>
-                <li>שאלון מטופל</li>
-            </ul>
-            <!-- fieldsets -->
-            <fieldset>
+    <div class="col-md-6 col-md-offset-3">
+        <form id="doctorForm" class="form" action="results.html" autocomplete="off">
+            <br><br><br><br>
+            <!-- fieldsets 1 -->
+            <fieldset id="step1">
+                <div class="doctor" style="text-align: center;width: 100%;">
+                    <label class="label_input" class="errorTxt" style="width: 100%;"></label>
+                </div>
+
                 <h2 class="fs-title" align="center">פרטים אישיים</h2>
                 <h2 class="fs-subtitle" align="center">הכנס את פרטי המטופל.</h2>
-                <h4 align="right">שם פרטי</h4>
-                <input type="text" name="fname" id="fname" placeholder="שם פרטי"/>
-                <h4 align="right">שם משפחה</h4>
-                <input type="text" name="lname" id="lname" placeholder="שם משפחה"/>
-                <h4 align="right">תעודת זהות</h4>
-                <input type="text" name="id" id="id" placeholder="תעודת זהות"/>
-                <h4 align="right">גיל</h4>
+
+                <h4 align="right">שם פרטי:</h4>
                 <div class="form-field">
-                <input type="text" pattern="[0-120]" name="age" id="age" placeholder="גיל"/>
+                    <input type="text" name="fname" id="fname" autocomplete="off" placeholder="שם פרטי">
+                    <small></small>
                 </div>
-                    <div class="doctor" style="text-align: center;width: 100%;">
-                    <label class="label_input" id="checkAge_txt" style="width: 100%;"></label>
-                </div>
-                <h4 align="right">מין</h4>
-                <div class="row">
-                    <div class="radioRight">
-                        <div class="btn-group" id="sex">
-                            <label class="btn">
-                              <input type="radio" name='sex' value="m">
-                                <span> זכר</span>
-                            </label>
-                            <label class="btn">
-                              <input type="radio" name='sex' value="w">
-                                <span> נקבה</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <h4 align="right">טמפרטורה</h4>
-                <div class="form-field">
-                <input type="text" name="temp" id="temp" placeholder="טמפרטורה"/>
-                </div>
-                                <div class="doctor" style="text-align: center;width: 100%;">
-                    <label class="label_input" id="checkTemp_txt" style="width: 100%;"></label>
-                </div>
-                <input type="button" name="next" class="next action-button" value="הבא"/>
 
 
+                    <h4 align="right">שם משפחה:</h4>
+                <div class="form-field">
+                    <input type="text" name="lname" id="lname" autocomplete="off" placeholder="שם משפחה">
+                    <small></small>
+                </div>
+
+
+                    <h4 align="right">תעודת זהות:</h4>
+                <div class="form-field">
+                    <input type="text" name="id" id="id" autocomplete="off" placeholder="תעודת זהות">
+                    <small></small>
+                </div>
+
+
+                    <h4 align="right">גיל:</h4>
+                <div class="form-field">
+                    <input type="text" name="age" id="age" autocomplete="off" placeholder="גיל">
+                    <small></small>
+                </div>
+
+
+                    <h4 align="right">טמפרטורה:</h4>
+                <div class="form-field">
+                    <input type="text" name="temp" id="temp" autocomplete="off" placeholder="טמפרטורה">
+                    <small></small>
+                </div>
+
+
+
+                <h4 align="right">מין:</h4>
+
+                <label class="radioContainer"><span>זכר</span>
+                    <input type="radio" name='sex' value="m" checked>
+                    <span class="circle"></span>
+                </label>
+
+
+                <br/>
+                <label class="radioContainer"><span>נקבה</span>
+                    <input type="radio" name='sex' value="m">
+                    <span class="circle"></span>
+                </label>
+                <br/>
+
+                <input type="button" onclick="firstStepComplete();" name="next" class="next action-button" value="הבא"/>
             </fieldset>
-            <fieldset>
+
+            <!-- fieldsets 2 -->
+            <fieldset id="step2">
+
+                <div class="doctor" style="text-align: center;width: 100%;">
+                    <label class="label_input" id="errorTxt" style="width: 100%;"></label>
+                </div>
+
                 <h2 class="fs-title">שאלון רפואי</h2>
                 <h3 class="fs-subtitle">מלא את השאלון הרפואי</h3>
+
                 <h4 align="right">1. האם את/ה מעשן/ת?</h4>
 
-                <div class="row">
-                    <div class="radioRight">
-                        <div class="btn-group" id="smoke">
-                            <label class="btn">
-                              <input type="radio" name='smoke' value="0">
-                                <span> לא</span>
-                            </label>
-                            <label class="btn">
-                              <input type="radio" name='smoke' value="1">
-                                <span> כן</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+                <label class="radioContainer"><span>כן</span>
+                    <input type="radio" name='smoke' value="1">
+                    <span class="circle"></span>
+                </label>
+                <br/>
+                <label class="radioContainer"><span>לא</span>
+                    <input type="radio" name='smoke' value="0" checked>
+                    <span class="circle"></span>
+                </label>
+                <br/>
 
                 <h4 align="right">2. האם את בהריון?</h4>
 
-                <div class="row">
-                    <div class="radioRight">
-                        <div class="btn-group" id="pregnancy">
-                            <label class="btn">
-                              <input type="radio" name='pregnancy' value="0">
-                                <span> לא</span>
-                            </label>
-                            <label class="btn">
-                              <input type="radio" name='pregnancy' value="1">
-                                <span> כן</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+                <label class="radioContainer"><span>כן</span>
+                    <input type="radio" name='pregnancy' value="1" >
+                    <span class="circle"></span>
+                </label>
+                <br/>
+                <label class="radioContainer"><span>לא</span>
+                    <input type="radio" name='pregnancy' value="0" checked>
+                    <span class="circle"></span>
+                </label>
+                <br/>
 
                 <h4 align="right">3. האם השורשים שלך מאתיופיה?</h4>
 
-                <div class="row">
-                    <div class="radioRight">
-                        <div class="btn-group" id="ethiopian">
-                            <label class="btn">
-                              <input type="radio" name='ethiopian' value="0">
-                                <span> לא</span>
-                            </label>
-                            <label class="btn">
-                              <input type="radio" name='ethiopian' value="1">
-                                <span> כן</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+                <label class="radioContainer"><span>כן</span>
+                    <input type="radio" name='ethiopian' value="1" >
+                    <span class="circle"></span>
+                </label>
+                <br/>
+                <label class="radioContainer"><span>לא</span>
+                    <input type="radio" name='ethiopian' value="0" checked>
+                    <span class="circle"></span>
+                </label>
+                <br/>
 
                 <h4 align="right"> 4. האם השורשים שלך מארצות מזרח?</h4>
 
-                <div class="row">
-                    <div class="radioRight">
-                        <div class="btn-group" id="eastern">
-                            <label class="btn">
-                              <input type="radio" name='eastern' value="0">
-                                <span> לא</span>
-                            </label>
-                            <label class="btn">
-                              <input type="radio" name='eastern' value="1">
-                                <span> כן</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+                <label class="radioContainer"><span>כן</span>
+                    <input type="radio" name='eastern' value="1" >
+                    <span class="circle"></span>
+                </label>
+                <br/>
+                <label class="radioContainer"><span>לא</span>
+                    <input type="radio" name='eastern' value="0" checked>
+                    <span class="circle"></span>
+                </label>
+                <br/>
 
-                <input type="button" name="next" class="next action-button" value="הבא"/>
 
+                <input type="button" onclick="previousStep();" name="previous" class="previous action-button-previous" value="אחורה"/>
+                <input type="button" onclick="nextStep();" name="next" class="next action-button" value="הבא"/>
 
 
             </fieldset>
-            <fieldset>
+            <!-- fieldsets 3 -->
+            <fieldset id="step3">
                 <h2 class="fs-title" align="center">בדיקת דם</h2>
                 <h2 class="fs-subtitle" align="center">הכנס את תוצאות בדיקת הדם של המטופל.</h2>
-
                 <hr>
                 <h4 align="right"> האם ברצונך לטעון את תוצאות בדיקות הדם של המטופל?</h4>
 
                 <input type="button" onclick="getBloodValues();" class="submit action-button" value="טען"/>
 
-                <div class="doctor" style="text-align: center;width: 100%;">
-                    <label class="label_input" id="blood_txt" style="width: 100%;"></label>
+                <div class="form-field">
+                    <h4 align="right">WBC</h4>
+                    <input type="text" name="WBC" id="WBC" placeholder="WBC" autocomplete="off"/>
+                    <small></small>
                 </div>
-                <div>
-                    <div class="doctor" style="text-align: center;width: 100%;">
-                    <label class="label_input" id="checkBlood_txt" style="width: 100%;"></label>
-                </div>
-                <h4 align="right">WBC</h4>
-                <input type="text" name="WBC" id="WBC" placeholder="WBC"/>
-                <h4 align="right">Neut</h4>
-                <input type="text" name="Neut" id="Neut" placeholder="Neut"/>
-                <h4 align="right">Lymph</h4>
-                <input type="text" name="Lymph" id="Lymph" placeholder="Lymph"/>
-                <h4 align="right">RBC</h4>
-                <input type="text" name="RBC" id="RBC" placeholder="RBC"/>
-                <h4 align="right">HCT</h4>
-                <input type="text" name="HCT" id="HCT" placeholder="HCT"/>
-                <h4 align="right">Urea</h4>
-                <input type="text" name="Urea" id="Urea" placeholder="Urea"/>
-                <h4 align="right">Hb</h4>
-                <input type="text" name="Hb" id="Hb" placeholder="Hb"/>
-                <h4 align="right">Crtn</h4>
-                <input type="text" name="Crtn" id="Crtn" placeholder="Crtn"/>
-                <h4 align="right">Iron</h4>
-                <input type="text" name="Iron" id="Iron" placeholder="Iron"/>
-                <h4 align="right">HDL</h4>
-                <input type="text" name="HDL" id="HDL" placeholder="HDL"/>
-                <h4 align="right">AP</h4>
-                <input type="text" name="AP" id="AP"  placeholder="AP"/>
 
-                <input type="submit" onclick="saveDoctorForm();" name="submit" class="submit action-button" value="סיום"/>
-
+                <div class="form-field">
+                    <h4 align="right">Neut</h4>
+                    <input type="text" name="Neut" id="Neut" placeholder="Neut"/>
+                    <small></small>
                 </div>
+
+                <div class="form-field">
+                    <h4 align="right">Lymph</h4>
+                    <input type="text" name="Lymph" id="Lymph" placeholder="Lymph"/>
+                    <small></small>
+                </div>
+
+                <div class="form-field">
+                    <h4 align="right">RBC</h4>
+                    <input type="text" name="RBC" id="RBC" placeholder="RBC"/>
+                    <small></small>
+                </div>
+
+                <div class="form-field">
+                    <h4 align="right">HCT</h4>
+                    <input type="text" name="HCT" id="HCT" placeholder="HCT"/>
+                    <small></small>
+                </div>
+
+                <div class="form-field">
+                    <h4 align="right">Urea</h4>
+                    <input type="text" name="Urea" id="Urea" placeholder="Urea"/>
+                    <small></small>
+                </div>
+
+                <div class="form-field">
+                    <h4 align="right">Hb</h4>
+                    <input type="text" name="Hb" id="Hb" placeholder="Hb"/>
+                    <small></small>
+                </div>
+
+                <div class="form-field">
+                    <h4 align="right">Crtn</h4>
+                    <input type="text" name="Crtn" id="Crtn" placeholder="Crtn"/>
+                    <small></small>
+                </div>
+
+                <div class="form-field">
+                    <h4 align="right">Iron</h4>
+                    <input type="text" name="Iron" id="Iron" placeholder="Iron"/>
+                    <small></small>
+                </div>
+
+                <div class="form-field">
+                    <h4 align="right">HDL</h4>
+                    <input type="text" name="HDL" id="HDL" placeholder="HDL"/>
+                    <small></small>
+                </div>
+
+                <div class="form-field">
+                    <h4 align="right">AP</h4>
+                    <input type="text" name="AP" id="AP"  placeholder="AP"/>
+                    <small></small>
+                </div>
+
+
+                <input type="button" onclick="previousStep();" name="previous" class="previous action-button-previous" value="אחורה"/>
+                <input type="submit" name="submit" class="submit action-button" value="סיום"/>
             </fieldset>
         </form>
     </div>
 </div>
 
 
+    <script src="../js/formValidation.js"></script>
     <script src="../js/main.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>

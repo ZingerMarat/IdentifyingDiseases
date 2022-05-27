@@ -70,6 +70,9 @@ $(".close-btn").click(function(){
 		else if (status == "len id failure"){
 			$('#return_register').text('שגיאה בתהליך רישום, אורך לא חוקי של תעודת זהות.');
 		}
+		else if (status == "user exist"){
+			$('#return_register').text('שגיאה בתהליך רישום, שם משתמש קיים במערכת.');
+		}
 	};
 
 	// USER LOGIN

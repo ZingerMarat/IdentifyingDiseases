@@ -1,4 +1,4 @@
-import pytest
+import pytest, os
 from src.py_files.doctor import Doctor
 
 
@@ -14,7 +14,9 @@ def doctor():
 
 
 def test_add_data(capfd, monkeypatch, doctor):
-    doctor.excel_path = f"E:/OneDrive/Desktop/Assignments/Test and Quality/Final Project/src/web/files/storage"
+    path = os.getcwd()[:-6] + r"\src\web\files\storage"
+    print(path)
+    doctor.excel_path = path
     data = {'First name': ['כפיר'],
             'Last name': ['גרמן'],
             'ID': ['205583032'],

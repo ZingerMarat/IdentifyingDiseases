@@ -2,7 +2,12 @@ import pandas as pd
 import os
 import re
 
-csv_path = os.getcwd() + "\\src\\web\\files\\storage\\users.csv"
+csv_path = os.getcwd() + r"\src\web\files\storage\users.csv"
+
+
+def set_path_test(path):
+    global csv_path
+    csv_path = path
 
 
 def check_credentials(username, password):
@@ -10,6 +15,7 @@ def check_credentials(username, password):
     user_index, password_index = -1, -1
     try:
         user_index = users_csv[users_csv["username"] == username].index[0]
+        print(user_index)
         password_index = users_csv['password'].index[user_index]
     except IndexError as error:
         print(error)
@@ -23,26 +29,46 @@ def add_cred(username, password, user_id):
     credentials = {"username": username, "password": password, "id": user_id}
 
     cred = pd.DataFrame(credentials, index={30})
-    print("cred = pd.DataFrame(credentials, index={30})")
-    cred.to_csv(csv_path, index=False, header=False, mode='a')
-    print("cred.to_csv(csv_path, index=False, header=False, mode='a')")
+    cred.to_csv(csv_path, mode='a', index=False, header=False)
+
+
+def is_user_exist(username):
+    msg = "failure"
+    users_csv = pd.read_csv(csv_path, usecols=("username",))
+    try:
+        print(username)
+        user_index = users_csv[users_csv["username"] == username].index[0]
+        print(user_index)
+        if user_index != -1:
+            print(user_index)
+            msg = "user exist"
+        return msg
+
+    except IndexError as error:
+        msg = "success"
+        print(error)
+        return msg
 
 
 def save_register(username, pass_1, pass_2, user_id):
     msg = "failure"
     try:
-        if username != "" and pass_1 != "" and pass_2 != "" and pass_1 == pass_2:
-            user_msg, pass_msg, id_msg = check_username(username), check_password(pass_1), check_ID(user_id)
-            if user_msg == "success" and pass_msg == "success" and id_msg == "success":
-                add_cred(username, pass_1, user_id)
-                msg = "success"
-            elif user_msg != "success":
-                msg = user_msg
-            elif id_msg != "success":
-                msg = id_msg
-            elif pass_msg != "success":
-                msg = pass_msg
 
+        if username != "" and pass_1 != "" and pass_2 != "" and pass_1 == pass_2:
+            user_exist = is_user_exist(username)
+            if user_exist != "user exist":
+                user_msg, pass_msg, id_msg = check_username(username), check_password(pass_1), check_ID(user_id)
+                if user_msg == "success" and pass_msg == "success" and id_msg == "success":
+                    add_cred(username, pass_1, user_id)
+                    msg = "success"
+                elif user_msg != "success":
+                    msg = user_msg
+                elif id_msg != "success":
+                    msg = id_msg
+                elif pass_msg != "success":
+                    msg = pass_msg
+            else:
+                msg = user_exist
         else:
             msg = "failure"
         return msg
